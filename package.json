@@ -1,0 +1,17 @@
+{
+  "name": "back-end-GoBarber",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mauriciobau/back-end-GoBarber.git",
+  "author": "Maurício Baú <mauricio.a.bau@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "/src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
