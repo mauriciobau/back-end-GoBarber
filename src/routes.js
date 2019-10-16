@@ -28,7 +28,7 @@ import SessionController from './app/controllers/SessionController';
 //import ScheduleController from './app/controllers/ScheduleController';
 
 // importa o middleware de autenticação
-//import authMiddleware from './app/middlewares/auth';
+import authMiddleware from './app/middlewares/auth';
 
 // variável para criar as rotas
 const routes = new Router();
@@ -45,10 +45,10 @@ routes.post('/users', UserController.store);
 
 // carrega rota do middleware de autenticação, as rotas abaixo desta, só serão
 // acessiveis se o usuário estiver logado.
-//routes.use(authMiddleware);
+routes.use(authMiddleware);
 
 // rota para editar usuários
-//routes.put('/users', UserController.update);
+routes.put('/users', UserController.update);
 
 // rota para carregar Providers
 //routes.get('/providers', ProviderController.index);

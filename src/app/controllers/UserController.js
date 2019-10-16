@@ -62,7 +62,7 @@ class UserController {
     });
 
     if(!(await schema.isValid(req.body))){
-      return res.status(400).json({ error: 'Validation faisl' });
+      return res.status(400).json({ error: 'Validation fails' });
     }
 
     // pega email e senha antiga de req.body
