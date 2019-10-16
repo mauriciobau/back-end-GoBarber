@@ -38,7 +38,7 @@ class User extends Model {
 
   // método para associação com File. Cria um apelido de File para avatar
   static associate(models){
-    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+    //this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
   }
 
   // método para verificar a senha informada para login

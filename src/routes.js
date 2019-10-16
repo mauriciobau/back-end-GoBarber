@@ -13,7 +13,7 @@ import { Router } from "express";
 import UserController from './app/controllers/UserController';
 
 // importa a controlle de Seção / autenticação
-//import SessionController from './app/controllers/SessionController';
+import SessionController from './app/controllers/SessionController';
 
 // importa a controlle de upload
 //import FileController from './app/controllers/FileController';
@@ -38,7 +38,7 @@ const routes = new Router();
 
 
 // rota para logar
-//routes.post('/sessions', SessionController.store);
+routes.post('/sessions', SessionController.store);
 
 // rota para criar usuário
 routes.post('/users', UserController.store);
