@@ -1,5 +1,5 @@
 {
-  "name": "back-end-GoBarber",
+  "name": "back-end-gobarber",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:mauriciobau/back-end-GoBarber.git",
@@ -10,10 +10,17 @@
     "dev:debug": "nodemon --inspect src/server.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.19.6"
   },
   "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.19.3",
+    "sequelize-cli": "^5.5.1",
     "sucrase": "^3.10.1"
   }
 }
