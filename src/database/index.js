@@ -8,14 +8,13 @@ import User from '../app/models/User';
 import File from '../app/models/File';
 
 // importa model Appointment
-// import Appointment from '../app/models/Appointment';
+import Appointment from '../app/models/Appointment';
 
 // importa configurações do banco de dados
 import databaseConfig from '../config/database';
 
 // cria um array com todos os models
-// const models = [User, File, Appointment ];
-const models = [User, File];
+const models = [User, File, Appointment];
 
 class Database {
   constructor() {
