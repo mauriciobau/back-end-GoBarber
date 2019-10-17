@@ -22,7 +22,7 @@ import FileController from './app/controllers/FileController';
 import ProviderController from './app/controllers/ProviderController';
 
 // importa a controlle de Appointment
-// import AppointmentController from './app/controllers/AppointmentController';
+import AppointmentController from './app/controllers/AppointmentController';
 
 // importa a controlle de Appointment
 // import ScheduleController from './app/controllers/ScheduleController';
@@ -55,7 +55,7 @@ routes.get('/providers', ProviderController.index);
 // rota para buscar Appointment - agendamento
 // routes.get('/appointments', AppointmentController.index);
 // rota para criar Appointment - agendamento
-// routes.post('/appointments', AppointmentController.store);
+routes.post('/appointments', AppointmentController.store);
 
 // rota para buscar Schedule - agenda do provedor
 // routes.get('/schedule', ScheduleController.index);
