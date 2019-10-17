@@ -1,8 +1,8 @@
 // importando o express para iniciar a aplicação
-import express from "express";
+import express from 'express';
 
 // importando arquivo de routes.js para carregar as rotas da aplicação
-import routes from "./routes";
+import routes from './routes';
 
 // importa o arquivo database para realizar a conexão com o banco de dados
 import './database';

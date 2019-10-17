@@ -11,5 +11,5 @@ module.exports = {
     // criar nomencaltura com _
     underscored: true,
     underscoredAll: true,
-  }
+  },
 };

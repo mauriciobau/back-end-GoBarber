@@ -15,12 +15,14 @@ class SessionController {
   async store(req, res) {
     // cria o schema e recebe o objeto Yup com a estrutura de verificação
     const schema = Yup.object().shape({
-      email: Yup.string().email().required(),
+      email: Yup.string()
+        .email()
+        .required(),
       password: Yup.string().required(),
     });
 
     // faz a verificação através do schema criado pela função isValid dos dados passado pelo req.body
-    if(!(await schema.isValid(req.body))){
+    if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
@@ -31,15 +33,15 @@ class SessionController {
     const user = await User.findOne({ where: { email } });
 
     // verificar se existe o usuário informado
-    if(!user){
+    if (!user) {
       // retorna erro de usuário não encontrado
-      return res.status(401).json({ error: "User not found" });
+      return res.status(401).json({ error: 'User not found' });
     }
 
     // verifica se a senha informada esta correta.
-    if(!(await user.checkPassword(password))) {
+    if (!(await user.checkPassword(password))) {
       // retorna erro de senha incorreta
-      return res.status(401).json({ error: "Password does not match" });
+      return res.status(401).json({ error: 'Password does not match' });
     }
 
     // pega id e nome do usuário encontrado no banco de dados.

@@ -1,13 +1,13 @@
 // ARQUIVO DE ROTEAMENTO
 
 // importa o roteamento do express para poder criar as rotas do sistema
-import { Router } from "express";
+import { Router } from 'express';
 
 // importa o multer utilizado para fazer upload de arquivos
-//import multer from 'multer';
+// import multer from 'multer';
 
 // importa as configurações do multer
-//import multerConfig from './config/multer';
+// import multerConfig from './config/multer';
 
 // importa a controller de Usuário
 import UserController from './app/controllers/UserController';
@@ -16,16 +16,16 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 
 // importa a controlle de upload
-//import FileController from './app/controllers/FileController';
+// import FileController from './app/controllers/FileController';
 
 // importa a controlle de Providers
-//import ProviderController from './app/controllers/ProviderController';
+// import ProviderController from './app/controllers/ProviderController';
 
 // importa a controlle de Appointment
-//import AppointmentController from './app/controllers/AppointmentController';
+// import AppointmentController from './app/controllers/AppointmentController';
 
 // importa a controlle de Appointment
-//import ScheduleController from './app/controllers/ScheduleController';
+// import ScheduleController from './app/controllers/ScheduleController';
 
 // importa o middleware de autenticação
 import authMiddleware from './app/middlewares/auth';
@@ -34,8 +34,7 @@ import authMiddleware from './app/middlewares/auth';
 const routes = new Router();
 
 // variável para realizar o upload
-//const upload = multer(multerConfig);
-
+// const upload = multer(multerConfig);
 
 // rota para logar
 routes.post('/sessions', SessionController.store);
@@ -51,18 +50,18 @@ routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 
 // rota para carregar Providers
-//routes.get('/providers', ProviderController.index);
+// routes.get('/providers', ProviderController.index);
 
 // rota para buscar Appointment - agendamento
-//routes.get('/appointments', AppointmentController.index);
+// routes.get('/appointments', AppointmentController.index);
 // rota para criar Appointment - agendamento
-//routes.post('/appointments', AppointmentController.store);
+// routes.post('/appointments', AppointmentController.store);
 
 // rota para buscar Schedule - agenda do provedor
-//routes.get('/schedule', ScheduleController.index);
+// routes.get('/schedule', ScheduleController.index);
 
 // rota para realizar upload da imagem do avatar, com o middleware para fazer upload de apenas um arquivo
-//routes.post('/files', upload.single('file'), FileController.store);
+// routes.post('/files', upload.single('file'), FileController.store);
 
 // exporta as rotas criadas
 export default routes;

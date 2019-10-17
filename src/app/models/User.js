@@ -5,16 +5,16 @@ import Sequelize, { Model } from 'sequelize';
 import bcrypt from 'bcryptjs';
 
 class User extends Model {
-  //metodo chamado automaticamente pelo sequelize
+  // metodo chamado automaticamente pelo sequelize
   static init(sequelize) {
     // classe pai de Model
     super.init(
       {
-      name: Sequelize.STRING,
-      email: Sequelize.STRING,
-      password: Sequelize.VIRTUAL, // VIRTUAL - n vair existir no banco de dados
-      password_hash: Sequelize.STRING,
-      provider: Sequelize.BOOLEAN,
+        name: Sequelize.STRING,
+        email: Sequelize.STRING,
+        password: Sequelize.VIRTUAL, // VIRTUAL - n vair existir no banco de dados
+        password_hash: Sequelize.STRING,
+        provider: Sequelize.BOOLEAN,
       },
       // passa o objeto com o sequelize
       {
@@ -24,9 +24,9 @@ class User extends Model {
 
     // Hook do Sequelize - beforeSave - será executando antes de salvar no banco de dados
     // para gerar o hash da senha antes de salvar.
-    this.addHook('beforeSave', async (user) => {
+    this.addHook('beforeSave', async user => {
       // verifica se foi passado senha, que no caso é na criação ou edição do usuário
-      if(user.password) {
+      if (user.password) {
         // criptografa a senha com "força" de 8
         user.password_hash = await bcrypt.hash(user.password, 8);
       }
@@ -37,8 +37,8 @@ class User extends Model {
   }
 
   // método para associação com File. Cria um apelido de File para avatar
-  static associate(models){
-    //this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+  static associate(models) {
+    // this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
   }
 
   // método para verificar a senha informada para login
@@ -46,7 +46,6 @@ class User extends Model {
     return bcrypt.compare(password, this.password_hash);
   }
 }
-
 
 // exporta usuário
 export default User;

@@ -15,7 +15,7 @@ export default async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   // Verificar se existe o token
-  if(!authHeader){
+  if (!authHeader) {
     // retorna erro de token não enviado
     return res.status(401).json({ error: 'Token not provided' });
   }
@@ -24,7 +24,7 @@ export default async (req, res, next) => {
   // separa a string através do split retornando um array com Bearer na primeira
   // posição e o token na segunda posição, por isso usa-se a desestruturação,
   // como n vamos usar o Bearer, n informamos a variavel para o Bearer descartando ele.
-  const [, token ] = authHeader.split(' ');
+  const [, token] = authHeader.split(' ');
 
   // usa-se try - catch pois pode retornar erro
   try {
@@ -39,7 +39,6 @@ export default async (req, res, next) => {
     // retorna o next() pois passou pelas verificações e o usuário esta autenticado
     // seguindo assim a aplicação.
     return next();
-
   } catch (err) {
     // retorna erro de token inválido
     return res.status(401).json({ error: 'Token invalid' });
