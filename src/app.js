@@ -1,6 +1,9 @@
 // importando o express para iniciar a aplicação
 import express from 'express';
 
+// importa o paht para o middleware de imagem do avatar
+import path from 'path';
+
 // importando arquivo de routes.js para carregar as rotas da aplicação
 import routes from './routes';
 
@@ -23,6 +26,11 @@ class App {
   middlewares() {
     // define o formato json para trabalhar com as requisições
     this.server.use(express.json());
+    // servir arquivos staticos, imagens, css, etc
+    this.server.use(
+      '/files',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
+    );
   }
 
   routes() {

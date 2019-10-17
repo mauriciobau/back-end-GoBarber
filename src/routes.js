@@ -19,7 +19,7 @@ import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 
 // importa a controlle de Providers
-// import ProviderController from './app/controllers/ProviderController';
+import ProviderController from './app/controllers/ProviderController';
 
 // importa a controlle de Appointment
 // import AppointmentController from './app/controllers/AppointmentController';
@@ -50,7 +50,7 @@ routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 
 // rota para carregar Providers
-// routes.get('/providers', ProviderController.index);
+routes.get('/providers', ProviderController.index);
 
 // rota para buscar Appointment - agendamento
 // routes.get('/appointments', AppointmentController.index);
