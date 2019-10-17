@@ -22,6 +22,7 @@ class AppointmentController {
       limit: 20,
       // calculo para a paginação
       offset: (page - 1) * 20,
+      // incluir o relacionamento do provedor
       include: [
         {
           model: User,
