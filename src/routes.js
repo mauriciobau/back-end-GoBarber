@@ -4,10 +4,10 @@
 import { Router } from 'express';
 
 // importa o multer utilizado para fazer upload de arquivos
-// import multer from 'multer';
+import multer from 'multer';
 
 // importa as configurações do multer
-// import multerConfig from './config/multer';
+import multerConfig from './config/multer';
 
 // importa a controller de Usuário
 import UserController from './app/controllers/UserController';
@@ -16,7 +16,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 
 // importa a controlle de upload
-// import FileController from './app/controllers/FileController';
+import FileController from './app/controllers/FileController';
 
 // importa a controlle de Providers
 // import ProviderController from './app/controllers/ProviderController';
@@ -34,7 +34,7 @@ import authMiddleware from './app/middlewares/auth';
 const routes = new Router();
 
 // variável para realizar o upload
-// const upload = multer(multerConfig);
+const upload = multer(multerConfig);
 
 // rota para logar
 routes.post('/sessions', SessionController.store);
@@ -61,7 +61,7 @@ routes.put('/users', UserController.update);
 // routes.get('/schedule', ScheduleController.index);
 
 // rota para realizar upload da imagem do avatar, com o middleware para fazer upload de apenas um arquivo
-// routes.post('/files', upload.single('file'), FileController.store);
+routes.post('/files', upload.single('file'), FileController.store);
 
 // exporta as rotas criadas
 export default routes;
