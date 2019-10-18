@@ -25,7 +25,7 @@ import ProviderController from './app/controllers/ProviderController';
 import AppointmentController from './app/controllers/AppointmentController';
 
 // importa a controlle de Appointment
-// import ScheduleController from './app/controllers/ScheduleController';
+import ScheduleController from './app/controllers/ScheduleController';
 
 // importa o middleware de autenticação
 import authMiddleware from './app/middlewares/auth';
@@ -58,7 +58,7 @@ routes.get('/appointments', AppointmentController.index);
 routes.post('/appointments', AppointmentController.store);
 
 // rota para buscar Schedule - agenda do provedor
-// routes.get('/schedule', ScheduleController.index);
+routes.get('/schedule', ScheduleController.index);
 
 // rota para realizar upload da imagem do avatar, com o middleware para fazer upload de apenas um arquivo
 routes.post('/files', upload.single('file'), FileController.store);
