@@ -63,8 +63,11 @@ routes.post('/appointments', AppointmentController.store);
 // rota para buscar Schedule - agenda do provedor
 routes.get('/schedule', ScheduleController.index);
 
-// rota para notificações
+// rota para carregar do usuário notificações
 routes.get('/notifications', NotificationController.index);
+
+// rota para atualizar estada das notificações
+routes.put('/notifications/:id', NotificationController.update);
 
 // rota para realizar upload da imagem do avatar, com o middleware para fazer upload de apenas um arquivo
 routes.post('/files', upload.single('file'), FileController.store);
