@@ -59,13 +59,14 @@ routes.get('/providers', ProviderController.index);
 routes.get('/appointments', AppointmentController.index);
 // rota para criar Appointment - agendamento
 routes.post('/appointments', AppointmentController.store);
+// rota para deletar Appointment - agendamento
+routes.delete('/appointments/:id', AppointmentController.delete);
 
 // rota para buscar Schedule - agenda do provedor
 routes.get('/schedule', ScheduleController.index);
 
 // rota para carregar do usuário notificações
 routes.get('/notifications', NotificationController.index);
-
 // rota para atualizar estada das notificações
 routes.put('/notifications/:id', NotificationController.update);
 
