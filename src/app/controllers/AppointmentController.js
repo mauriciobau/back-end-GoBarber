@@ -3,11 +3,13 @@
 // importar os métodos de date-fns
 // importa tradução do date-fns
 // impota notificações
+// importa Mail para enviar emails
 import * as Yup from 'yup';
 import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import Appointment from '../models/Appointment';
 import Notification from '../schemas/Notification';
+import Mail from '../../lib/Mail';
 
 import User from '../models/User';
 import File from '../models/File';
@@ -124,7 +126,15 @@ class AppointmentController {
 
   async delete(req, res) {
     // buscar dados do agendamento
-    const appointment = await Appointment.findByPk(req.params.id);
+    const appointment = await Appointment.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          as: 'provider',
+          attributes: ['name', 'email'],
+        },
+      ],
+    });
 
     // verifica se o usuário que esta logado é o dono do agendamento
     if (appointment.user_id !== req.userId) {
@@ -145,6 +155,12 @@ class AppointmentController {
     appointment.canceled_at = new Date();
 
     await appointment.save();
+
+    await Mail.sendMail({
+      to: `${appointment.provider.name} <${appointment.provider.email}>`,
+      subject: 'Agendamento cancelado',
+      text: 'Você tem um novo cancelamento',
+    });
 
     return res.json(appointment);
   }
