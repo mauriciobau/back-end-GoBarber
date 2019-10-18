@@ -1,9 +1,13 @@
 // importa o Yup para realizar as validações das informações
 // o Yup não possui um export defaul, por isso utiliza-se o *
-// importar os métodos startOfHour e parseISO, isBefore, de data-fns
+// importar os métodos startOfHour e parseISO, isBefore, format de date-fns
+// importa tradução do date-fns
+// impota notificações
 import * as Yup from 'yup';
-import { startOfHour, parseISO, isBefore } from 'date-fns';
+import { startOfHour, parseISO, isBefore, format } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import Appointment from '../models/Appointment';
+import Notification from '../schemas/Notification';
 
 import User from '../models/User';
 import File from '../models/File';
@@ -95,6 +99,18 @@ class AppointmentController {
       user_id: req.userId,
       provider_id,
       date: hourStart,
+    });
+
+    const user = await User.findByPk(req.userId);
+
+    const formatedDate = format(hourStart, "'dia' dd 'de' MMMM', às' H:mm'h'", {
+      locale: pt,
+    });
+
+    // notificar agendamento ao provedor
+    await Notification.create({
+      content: `Novo agendamento de ${user.name} para ${formatedDate}`,
+      user: provider_id,
     });
 
     return res.json(appointment);
