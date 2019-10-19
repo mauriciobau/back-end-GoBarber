@@ -30,6 +30,9 @@ import ScheduleController from './app/controllers/ScheduleController';
 // importa a controlle de Notificação
 import NotificationController from './app/controllers/NotificationController';
 
+// importa controller de horario disponivel
+import AvaibleController from './app/controllers/AvailableController';
+
 // importa o middleware de autenticação
 import authMiddleware from './app/middlewares/auth';
 
@@ -54,6 +57,9 @@ routes.put('/users', UserController.update);
 
 // rota para carregar Providers
 routes.get('/providers', ProviderController.index);
+
+// rota para listar horários diponiveis do provider
+routes.get('/providers/:providerId/available', AvaibleController.index);
 
 // rota para buscar Appointment - agendamento
 routes.get('/appointments', AppointmentController.index);
