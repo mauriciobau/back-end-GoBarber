@@ -11,6 +11,9 @@ import authConfig from '../../config/auth';
 // importa a model User para ter a estrutura do usuário
 import User from '../models/User';
 
+// importa o file para poder usar o avatar
+import File from '../models/File';
+
 class SessionController {
   async store(req, res) {
     // cria o schema e recebe o objeto Yup com a estrutura de verificação
@@ -30,7 +33,16 @@ class SessionController {
     const { email, password } = req.body;
 
     // procura no banco de dados um usuário que contenha o email informado no req.body
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: { email },
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
 
     // verificar se existe o usuário informado
     if (!user) {
@@ -45,7 +57,7 @@ class SessionController {
     }
 
     // pega id e nome do usuário encontrado no banco de dados.
-    const { id, name } = user;
+    const { id, name, avatar, provider } = user;
 
     // retorna os dados do usuário com o token
     return res.json({
@@ -53,6 +65,8 @@ class SessionController {
         id,
         name,
         email,
+        provider,
+        avatar,
       },
       // gera o token para retornar, e passa a id do usuario no token,
       // authConfig.secret string de assinatura

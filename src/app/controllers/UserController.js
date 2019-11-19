@@ -5,6 +5,8 @@ import * as Yup from 'yup';
 // importa a model User
 import User from '../models/User';
 
+import File from '../models/File';
+
 class UserController {
   // criar usuário, async pois irá trabalhar com banco de dados
   async store(req, res) {
@@ -95,14 +97,24 @@ class UserController {
     }
 
     // pega os valores id, nome e provides e atualiza o cadastro no banco
-    const { id, name, provider } = await user.update(req.body);
+    await user.update(req.body);
+
+    const { id, name, avatar } = await User.findByPk(req.userId, {
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
 
     // retorna as informações do usuário
     return res.json({
       id,
       name,
       email,
-      provider,
+      avatar,
     });
   }
 }

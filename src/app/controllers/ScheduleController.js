@@ -1,15 +1,8 @@
-// importa a model Appointment
-// importar os métodos startOfHour e parseISO, isBefore, de data-fns
-// importa o Yup para realizar as validações das informações
-// o Yup não possui um export defaul, por isso utiliza-se o *
-import * as Yup from 'yup';
-
 import { startOfDay, parseISO, endOfDay } from 'date-fns';
 import { Op } from 'sequelize';
 import Appointment from '../models/Appointment';
 
 import User from '../models/User';
-import File from '../models/File';
 
 // cria a classe ScheduleController
 class ScheduleController {
@@ -35,6 +28,13 @@ class ScheduleController {
           [Op.between]: [startOfDay(parseDate), endOfDay(parseDate)],
         },
       },
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: ['name'],
+        },
+      ],
       order: ['date'],
     });
 

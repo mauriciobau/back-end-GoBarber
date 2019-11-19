@@ -7,6 +7,9 @@ import express from 'express';
 // importa o paht para o middleware de imagem do avatar
 import path from 'path';
 
+// importar cors para gerenciar conexões a api
+import cors from 'cors';
+
 // youch tratativa nas mensagem de erro para melhor visualização
 import Youch from 'youch';
 
@@ -45,6 +48,8 @@ class App {
   middlewares() {
     // É necessário colocar isso antes de todos os middlewares e rotas
     this.server.use(Sentry.Handlers.requestHandler());
+    // ativa a utilização do cors
+    this.server.use(cors());
     // define o formato json para trabalhar com as requisições
     this.server.use(express.json());
     // servir arquivos staticos, imagens, css, etc
